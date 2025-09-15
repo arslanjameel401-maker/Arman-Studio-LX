@@ -1,1 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Arman Studio — Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <meta name="description" content="Arman Studio — Graphic Designer, Photographer & Video Editor. 7+ years experience." />
+
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#0f1720;
+      --muted:#9aa4b2;
+      --text:#eef2f7;
+      --accent:#38b6ff; /* electric blue accent */
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      --maxw:1100px;
+      --gap:20px;
+      font-synthesis: none;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Poppins", "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#06070a 0%, #0b0f14 100%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    .container{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:36px 22px;
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .logo {
+      width:56px;height:56px;border-radius:12px;
+      background: linear-gradient(135deg,var(--accent), #6d5dff);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:800;color:#02121a;font-size:18px;
+      box-shadow:0 6px 18px rgba(56,182,255,0.08), inset 0 -6px 18px rgba(0,0,0,0.2);
+    }
+    .brand h1{margin:0;font-size:16px;letter-spacing:0.2px}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+
+    nav.inline{display:none}
+    .hamb{display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+    .hamb span{width:18px;height:2px;background:var(--muted);display:block;border-radius:2px}
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:28px;
+      align-items:center;
+      margin-top:36px;
+    }
+
+    @media(min-width:900px){
+      nav.inline{display:flex;gap:18px;align-items:center}
+      .hamb{display:none}
+      .hero{grid-template-columns:1fr 420px}
+    }
+
+    .hero-left h2{
+      margin:0;
+      font-size:34px;
+      line-height:1.02;
+      font-weight:800;
+      letter-spacing:-0.6px;
+    }
+    @media(min-width:900px){.hero-left h2{font-size:44px}}
+
+    .hero-left p{color:var(--muted);margin-top:12px;max-width:60ch}
+    .cta{display:flex;gap:12px;margin-top:18px}
+    .btn{
+      padding:12px 18px;border-radius:12px;border:0;cursor:pointer;font-weight:600;
+      box-shadow:0 6px 20px rgba(2,6,23,0.6);
+    }
+    .btn.primary{
+      background: linear-gradient(90deg,var(--accent), #6d5dff);
+      color:#02121a;
+    }
+    .btn.ghost{
+      background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)
+    }
+
+    .badge-row{display:flex;gap:10px;margin-top:14px;color:var(--muted);font-size:13px}
+    .divider{width:1px;background:rgba(255,255,255,0.04);height:16px;display:inline-block;margin:0 8px}
+
+    /* hero image */
+    .hero-card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:18px; overflow:hidden; padding:8px; border:1px solid rgba(255,255,255,0.03);
+    }
+    .hero-card img{width:100%;height:100%;object-fit:cover;display:block;border-radius:12px}
+
+    /* sections */
+    section{margin-top:42px}
+    h3{font-size:20px;margin:0 0 10px 0;font-weight:700}
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)
+    }
+
+    .about-grid{display:grid;grid-template-columns:1fr;gap:18px}
+    @media(min-width:900px){.about-grid{grid-template-columns:1fr 320px}}
+    .muted{color:var(--muted);font-size:15px}
+
+    /* skills */
+    .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+    .pill{padding:8px 12px;border-radius:999px;background:var(--glass);font-weight:600;color:var(--text);font-size:13px}
+
+    .skills-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+    @media(min-width:700px){.skills-grid{grid-template-columns:repeat(3,1fr)}}
+    .skill-card{padding:14px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
+
+    /* services */
+    .services-grid{display:grid;grid-template-columns:1fr;gap:12px}
+    @media(min-width:900px){.services-grid{grid-template-columns:repeat(3,1fr)}}
+
+    /* portfolio */
+    .projects{display:grid;grid-template-columns:1fr;gap:12px}
+    @media(min-width:700px){.projects{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1100px){.projects{grid-template-columns:repeat(3,1fr)}}
+    .project{border-radius:12px;overflow:hidden;background:var(--card);border:1px solid rgba(255,255,255,0.03);transition:transform .22s ease, box-shadow .22s}
+    .project img{width:100%;height:180px;object-fit:cover;display:block}
+    .project .pbody{padding:12px}
+    .project:hover{transform:translateY(-6px);box-shadow:0 18px 50px rgba(6,8,15,0.7)}
+
+    /* contact */
+    .contact-grid{display:grid;grid-template-columns:1fr;gap:12px}
+    @media(min-width:900px){.contact-grid{grid-template-columns:1fr 340px}}
+    form .field{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text);outline:none}
+    .send{margin-top:8px}
+
+    footer{margin-top:28px;padding:18px 0;color:var(--muted);font-size:13px;text-align:center}
+
+    /* small nav modal for mobile */
+    .nav-modal{
+      position:fixed;inset:0;background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.85));display:none;
+      align-items:center;justify-content:center;z-index:60;
+    }
+    .nav-modal.open{display:flex}
+    .nav-box{width:90%;max-width:420px;padding:20px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+    .nav-box a{display:block;padding:12px 6px;color:var(--text);text-decoration:none;border-radius:8px}
+    .nav-box a + a{margin-top:6px}
+    .small-muted{color:var(--muted);font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <div class="brand">
+        <div class="logo">AS</div>
+        <div>
+          <h1>Arman Studio</h1>
+          <p>Graphic Designer • Photographer • Video Editor</p>
+        </div>
+      </div>
+
+      <nav class="inline">
+        <a href="#home" class="small-muted">Home</a>
+        <a href="#about" class="small-muted">About</a>
+        <a href="#portfolio" class="small-muted">Portfolio</a>
+        <a href="#services" class="small-muted">Services</a>
+        <a href="#contact" class="small-muted">Contact</a>
+      </nav>
+
+      <div class="hamb" id="hamb" aria-label="Open menu" role="button">
+        <span></span><span></span><span></span>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-left">
+          <h2>Hi, I’m Arman — Graphic Designer, Photographer & Product Designer</h2>
+          <p class="muted">I transform ideas into visually striking designs, product photography, and polished videos. With 7+ years experience, I help brands tell their story through imagery and motion.</p>
+
+          <div class="cta">
+            <a class="btn primary" href="#portfolio">View My Work</a>
+            <a class="btn ghost" href="#contact">Hire Me</a>
+          </div>
+
+          <div class="badge-row">
+            <div>7+ years experience</div>
+            <div class="divider"></div>
+            <div>Photos & Video Editing</div>
+            <div class="divider"></div>
+            <div class="small-muted">Adobe Photoshop • After Effects • Filmora • CapCut Pro</div>
+          </div>
+        </div>
+
+        <div class="hero-card" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=1400&q=80&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Arman Studio - hero image">
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+          <div>
+            <h3>About</h3>
+            <p class="muted" style="margin-top:8px">
+              I am Arman, a passionate creative with over 7 years of experience in graphic design, product photography, video editing, and poster design. My goal is to transform ideas into visually stunning solutions that engage and inspire. I thrive on creativity and innovation, using industry-standard tools to deliver results that exceed expectations.
+            </p>
+          </div>
+
+          <div style="text-align:right">
+            <div style="font-weight:700">Education</div>
+            <div class="small-muted" style="margin-top:6px">Drak — Visual Design coursework</div>
+            <div style="height:8px"></div>
+            <div style="font-weight:700">Experience</div>
+            <div class="small-muted" style="margin-top:6px">7 years across branding, posters, product photography and video editing</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills">
+        <h3>Skills & Tools</h3>
+        <div class="skills" style="margin-top:10px">
+          <span class="pill">Graphic Design</span>
+          <span class="pill">Poster Design</span>
+          <span class="pill">Product Photography</span>
+          <span class="pill">Video Editing</span>
+          <span class="pill">Adobe Photoshop</span>
+          <span class="pill">After Effects</span>
+          <span class="pill">Filmora</span>
+          <span class="pill">CapCut Pro</span>
+        </div>
+
+        <div class="skills-grid" style="margin-top:14px">
+          <div class="skill-card">
+            <strong>Graphic Design</strong>
+            <div class="muted" style="margin-top:8px">Logos, posters, branding, marketing collateral.</div>
+          </div>
+
+          <div class="skill-card">
+            <strong>Photography</strong>
+            <div class="muted" style="margin-top:8px">Product shoots, e-commerce imagery, retouching.</div>
+          </div>
+
+          <div class="skill-card">
+            <strong>Video Editing</strong>
+            <div class="muted" style="margin-top:8px">Promotional videos, social reels, motion graphics.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services">
+        <h3>Services</h3>
+        <div class="services-grid" style="margin-top:12px">
+          <div class="card">
+            <strong>Graphic Design</strong>
+            <div class="muted" style="margin-top:8px">Logos, posters, packaging design, marketing assets.</div>
+          </div>
+
+          <div class="card">
+            <strong>Product Photography</strong>
+            <div class="muted" style="margin-top:8px">High-quality product shots for e-commerce & catalogs, with professional retouching.</div>
+          </div>
+
+          <div class="card">
+            <strong>Video Editing</strong>
+            <div class="muted" style="margin-top:8px">Ad edits, social reels, promo videos using After Effects and Filmora.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO -->
+      <section id="portfolio">
+        <h3>Featured Projects</h3>
+        <div class="projects" style="margin-top:12px">
+          <article class="project">
+            <img src="https://images.unsplash.com/photo-1520975911071-7be5f1a1d6c9?w=900&q=70&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="E-commerce campaign">
+            <div class="pbody">
+              <strong>E-commerce Brand Campaign</strong>
+              <div class="muted" style="margin-top:6px">Product photography and ad poster design for a local fashion brand — styling, shoot, retouching & promotional assets.</div>
+            </div>
+          </article>
+
+          <article class="project">
+            <img src="https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?w=900&q=70&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Promotional video">
+            <div class="pbody">
+              <strong>Promotional Video Series</strong>
+              <div class="muted" style="margin-top:6px">Short-form brand videos edited with After Effects & Filmora for social and ad placements.</div>
+            </div>
+          </article>
+
+          <article class="project">
+            <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=900&q=70&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Poster collection">
+            <div class="pbody">
+              <strong>Creative Poster Collection</strong>
+              <div class="muted" style="margin-top:6px">Event posters and promotional visuals crafted to increase local awareness and attendance.</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="card">
+        <h3>Contact</h3>
+        <div class="contact-grid" style="margin-top:12px">
+          <form id="contactForm" onsubmit="return handleSend(event)" style="display:flex;flex-direction:column;gap:8px;">
+            <input class="field" id="name" placeholder="Your name" required>
+            <input class="field" id="email" type="email" placeholder="Email address" required>
+            <input class="field" id="phone" placeholder="Phone / WhatsApp (optional)">
+            <textarea class="field" id="message" rows="5" placeholder="Message" required></textarea>
+            <div style="display:flex;gap:8px;align-items:center">
+              <button class="btn primary send" type="submit">Send Message</button>
+              <div class="small-muted" id="sendStatus" aria-live="polite" style="margin-left:6px"></div>
+            </div>
+          </form>
+
+          <aside style="padding-left:8px">
+            <div style="font-weight:700">Contact Details</div>
+            <div class="muted" style="margin-top:8px">
+              Email: <a href="mailto:armanstudio@email.com" style="color:var(--accent);text-decoration:none">armanstudio@email.com</a><br>
+              Phone/WhatsApp: <a href="tel:+923001234567" style="color:var(--accent);text-decoration:none">+92 300 1234567</a><br>
+              Instagram: <a href="#" style="color:var(--accent);text-decoration:none">@armanstudio</a>
+            </div>
+
+            <div style="margin-top:18px;display:flex;gap:8px;flex-wrap:wrap">
+              <a href="#" class="pill" style="text-decoration:none">Behance</a>
+              <a href="#" class="pill" style="text-decoration:none">LinkedIn</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <footer>© <span id="year"></span> Arman Studio. All rights reserved.</footer>
+    </main>
+  </div>
+
+  <!-- Mobile nav modal -->
+  <div class="nav-modal" id="navModal" role="dialog" aria-hidden="true">
+    <div class="nav-box" role="document">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <strong style="font-size:16px">Menu</strong>
+        <button id="closeNav" style="background:transparent;border:0;color:var(--muted);cursor:pointer">Close</button>
+      </div>
+      <nav style="margin-top:12px">
+        <a href="#home" onclick="closeNav()">Home</a>
+        <a href="#about" onclick="closeNav()">About</a>
+        <a href="#portfolio" onclick="closeNav()">Portfolio</a>
+        <a href="#services" onclick="closeNav()">Services</a>
+        <a href="#contact" onclick="closeNav()">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <script>
+    // small utilities
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // mobile nav
+    const hamb = document.getElementById('hamb');
+    const navModal = document.getElementById('navModal');
+    const closeNavBtn = document.getElementById('closeNav');
+
+    function openNav(){ navModal.classList.add('open'); navModal.setAttribute('aria-hidden','false'); }
+    function closeNav(){ navModal.classList.remove('open'); navModal.setAttribute('aria-hidden','true'); }
+
+    hamb.addEventListener('click', openNav);
+    closeNavBtn.addEventListener('click', closeNav);
+    navModal.addEventListener('click', (e)=>{ if(e.target === navModal) closeNav(); });
+
+    // contact form handler (simple mailto fallback + UX)
+    function handleSend(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const status = document.getElementById('sendStatus');
+
+      if(!name || !email || !message){ status.textContent = 'Please complete required fields.'; return false; }
+
+      // Prepare mailto as a fallback so user can open their email client
+      const subject = encodeURIComponent('Website Inquiry from ' + name);
+      const body = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`
+      );
+      const mailto = `mailto:armanstudio@email.com?subject=${subject}&body=${body}`;
+
+      // show temporary message then open default mail client
+      status.textContent = 'Opening your email client...';
+      setTimeout(()=>{ window.location.href = mailto; status.textContent = 'If mail client did not open, please email manually.'; }, 700);
+
+      return false;
+    }
+
+    // Smooth scrolling for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const target = this.getAttribute('href');
+        if(target && target.startsWith('#')){
+          const el = document.querySelector(target);
+          if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); closeNav(); }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
 
